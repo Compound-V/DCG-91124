@@ -1,0 +1,388 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Dystopian';
+  src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+}
+
+@font-face {
+  font-family: 'Mono';
+  src: url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+}
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-orange: #ff5500;
+  --color-dark-gray: #1a1a1a;
+  --color-light-gray: #333333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: 'Space Mono', monospace;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Modal styles */
+.modal-open {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0);
+}
+
+/* Ensure modal is always on top */
+.modal-overlay {
+  isolation: isolate;
+}
+
+/* Prevent content shift when modal opens */
+.modal-open body {
+  overflow-y: hidden;
+  touch-action: none;
+  -ms-touch-action: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.bg-grid {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+.bg-concrete {
+  background-image: url('https://images.unsplash.com/photo-1566041510639-8d95a2490bfb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.glitch {
+  position: relative;
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2%, 64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+
+.glitch:before,
+.glitch:after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch:before {
+  left: 2px;
+  text-shadow: -2px 0 var(--color-orange);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch:after {
+  left: -2px;
+  text-shadow: -2px 0 var(--color-orange);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(31px, 9999px, 94px, 0);
+  }
+  5% {
+    clip: rect(70px, 9999px, 71px, 0);
+  }
+  10% {
+    clip: rect(29px, 9999px, 83px, 0);
+  }
+  15% {
+    clip: rect(75px, 9999px, 93px, 0);
+  }
+  20% {
+    clip: rect(26px, 9999px, 67px, 0);
+  }
+  25% {
+    clip: rect(42px, 9999px, 15px, 0);
+  }
+  30% {
+    clip: rect(56px, 9999px, 98px, 0);
+  }
+  35% {
+    clip: rect(93px, 9999px, 42px, 0);
+  }
+  40% {
+    clip: rect(6px, 9999px, 72px, 0);
+  }
+  45% {
+    clip: rect(50px, 9999px, 80px, 0);
+  }
+  50% {
+    clip: rect(82px, 9999px, 31px, 0);
+  }
+  55% {
+    clip: rect(41px, 9999px, 89px, 0);
+  }
+  60% {
+    clip: rect(57px, 9999px, 61px, 0);
+  }
+  65% {
+    clip: rect(31px, 9999px, 56px, 0);
+  }
+  70% {
+    clip: rect(88px, 9999px, 85px, 0);
+  }
+  75% {
+    clip: rect(90px, 9999px, 91px, 0);
+  }
+  80% {
+    clip: rect(48px, 9999px, 59px, 0);
+  }
+  85% {
+    clip: rect(18px, 9999px, 93px, 0);
+  }
+  90% {
+    clip: rect(69px, 9999px, 43px, 0);
+  }
+  95% {
+    clip: rect(24px, 9999px, 31px, 0);
+  }
+  100% {
+    clip: rect(35px, 9999px, 59px, 0);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip: rect(65px, 9999px, 119px, 0);
+  }
+  5% {
+    clip: rect(133px, 9999px, 118px, 0);
+  }
+  10% {
+    clip: rect(51px, 9999px, 104px, 0);
+  }
+  15% {
+    clip: rect(133px, 9999px, 107px, 0);
+  }
+  20% {
+    clip: rect(128px, 9999px, 33px, 0);
+  }
+  25% {
+    clip: rect(12px, 9999px, 87px, 0);
+  }
+  30% {
+    clip: rect(38px, 9999px, 116px, 0);
+  }
+  35% {
+    clip: rect(36px, 9999px, 79px, 0);
+  }
+  40% {
+    clip: rect(68px, 9999px, 116px, 0);
+  }
+  45% {
+    clip: rect(98px, 9999px, 135px, 0);
+  }
+  50% {
+    clip: rect(55px, 9999px, 78px, 0);
+  }
+  55% {
+    clip: rect(133px, 9999px, 139px, 0);
+  }
+  60% {
+    clip: rect(93px, 9999px, 118px, 0);
+  }
+  65% {
+    clip: rect(45px, 9999px, 70px, 0);
+  }
+  70% {
+    clip: rect(80px, 9999px, 87px, 0);
+  }
+  75% {
+    clip: rect(115px, 9999px, 145px, 0);
+  }
+  80% {
+    clip: rect(32px, 9999px, 139px, 0);
+  }
+  85% {
+    clip: rect(27px, 9999px, 85px, 0);
+  }
+  90% {
+    clip: rect(53px, 9999px, 81px, 0);
+  }
+  95% {
+    clip: rect(92px, 9999px, 140px, 0);
+  }
+  100% {
+    clip: rect(13px, 9999px, 91px, 0);
+  }
+}
+
+.hover-glitch:hover {
+  animation: hover-glitch 0.3s linear;
+}
+
+@keyframes hover-glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.btn {
+  @apply inline-block px-6 py-3 font-bold uppercase tracking-wider border-2 transition-all duration-300 relative overflow-hidden;
+}
+
+.btn-primary {
+  @apply border-[#ff5500] text-white hover:bg-[#ff5500] hover:text-black;
+}
+
+.btn-primary::before {
+  content: '';
+  @apply absolute inset-0 bg-[#ff5500] opacity-20;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-secondary {
+  @apply border-white text-white hover:bg-white hover:text-black;
+}
+
+.countdown-item {
+  @apply flex flex-col items-center justify-center p-4 bg-black border border-[#ff5500];
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-item::before {
+  content: '';
+  @apply absolute inset-0 bg-[#ff5500] opacity-10;
+}
+
+.countdown-item::after {
+  content: '';
+  @apply absolute inset-0 bg-noise opacity-20;
+}
+
+.section-title {
+  @apply text-4xl md:text-5xl font-bold mb-8 relative inline-block;
+  text-shadow: 3px 3px 0 rgba(255, 85, 0, 0.3);
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-1 bg-[#ff5500];
+  transform: skewX(-15deg);
+}
+
+.card {
+  @apply bg-[#1a1a1a] border border-[#333] p-6 relative overflow-hidden transition-all duration-300;
+}
+
+.card::before {
+  content: '';
+  @apply absolute inset-0 bg-noise opacity-10;
+}
+
+.card:hover {
+  @apply border-[#ff5500];
+  transform: translateY(-5px);
+}
+
+.form-input {
+  @apply w-full h-12 px-4 rounded-lg;
+  @apply bg-[#2a2a2a] border-2 border-[#444444] text-white;
+  @apply placeholder-[#999999];
+  @apply transition-all duration-200;
+  @apply focus:outline-none focus:border-[#ff5500] focus:ring-2 focus:ring-[#ff5500] focus:ring-opacity-20;
+  @apply hover:border-[#555555];
+}
+
+select.form-input {
+  @apply appearance-none bg-[#2a2a2a] cursor-pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+textarea.form-input {
+  @apply h-auto min-h-[150px] py-3 resize-y;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-white mb-2;
+  @apply uppercase tracking-wider;
+}
+
+.table-container {
+  @apply w-full overflow-x-auto;
+}
+
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th {
+  @apply p-4 text-left border-b border-[#333] text-[#ff5500] uppercase tracking-wider;
+}
+
+.table td {
+  @apply p-4 border-b border-[#333];
+}
+
+.table tr:hover {
+  @apply bg-[#1a1a1a];
+}
+
+.parallax-layer {
+  will-change: transform;
+}
